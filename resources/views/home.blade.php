@@ -10,30 +10,57 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-expand-sm bg-success ">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">king cobura</a>
+      <a class="navbar-brand" href="/home">BOOTSGRIDS</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="registration">register</a></li>
-      <li><a href="login">login</a></li>
-      <li><a href="admin">admin</a></li>
-      <li><a href="shopping">shopy</a></li>
+      <li class="active"><a href="/dashboard">user</a></li>
+      <li><a href="/admin">ADMIN</a></li>
+        <li><a href="/shopping">Shopy</a></li>
+
+     <!--  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li> -->
+
     </ul>
-    <form class="navbar-form navbar-left" action="/action_page.php">
-      <div class="form-group" align="right">
-        <input type="text" class="form-control" placeholder="Search" name="search">
-      </div>
-      <button type="submit" class="btn btn-default" al>Submit</button>
-    </form>
+
+   <!--  <div class="">
+        <input type="text" class="" placeholder="Search">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div> -->
+      
+    <ul class="nav navbar-nav navbar-right">
+     
+      @if(Auth()->user())
+       <!-- {{ $email= Auth()->user()->email }}
+       -->
+
+      <!-- Check session using if condition -->
+       
+       
+      <li><a href="/addtocart"><span class="glyphicon glyphicon-shopping-cart"></span> cart
+      ({{ DB::table('cart')
+                    ->whereIn('user', [$email])
+                    -> count() }}  )</a>
+        <!-- <span> Shopping cart product count </span> -->
+      </li>
+      @else
+ <li><a href="/addtocart"><span class="glyphicon glyphicon-shopping-cart"></span> cart</a></li> 
+ @endif
+      <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
   </div>
 </nav>
-
+  
 <div class="container">
-
+  @yield('content') 
 </div>
-@yield('content')
 </body>
 </html>

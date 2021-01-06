@@ -37,6 +37,12 @@ Route::get('/', function () {
   Route::get('/cart', function () {
     return view('addtocart');
 });
+  Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+  Route::get('/profile', function () {
+    return view('profile');
+});
   Route::get('login', [AuthController::class,'index']);
   Route::post('post-login', [AuthController::class,'postLogin']);
   Route::post('post-adminlogin', [AuthController::class,'postadminLogin']); 
@@ -47,6 +53,8 @@ Route::get('/', function () {
   Route::get('logout', [AuthController::class,'logout']);
    Route::get('shopping', [displaycontroller::class,'index']);
      Route::get('cart/{id}', [cartcontroller::class,'cart']);
+     Route::get('cart/{id}', [cartcontroller::class,'cart']);
+     Route::post('insert',[cartcontroller::class,'insert']);
 
 
   Route::resource('products', productController::class);

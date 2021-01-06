@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard - Tutsmake.com</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<!--Bootsrap 4 CDN-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="{{url('style.css')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  width: 100px;
+  position: fixed;
+  z-index: 1;
+  top: 20px;
+  left: 0px;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 120px 0;
+  height: 1000px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196F3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 1200px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+</style>
 </head>
 <body>
-<div class="container-fluid">
-<div class="row no-gutter">
-<div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-<div class="col-md-8 col-lg-6">
-<div class="login d-flex align-items-center py-5">
-<div class="container">
-<div class="row">
-<div class="col-md-9 col-lg-8 mx-auto">
-<h3 class="login-heading mb-4">Welcome Dashboard!</h3>
-<div class="card">
-<div class="card-body">
-Welcome {{ ucfirst(Auth()->user()->name) }}
+ 
+<div class="sidenav">
+  <a href="profile">profile</a>
+  <a href="shopping">shopy</a>
+  <a href="addtocart">My Order</a>
+  <a href="#clients">Clients</a>
+  <a href="contact">Contact</a>
 </div>
-<div class="card-body">
-<a class="small" href="{{url('logout')}}">Logout</a>
+<div>
+  <a href="logout">logout</a>
+
+  
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+ 
+@yield('content')
+
 </body>
-</html>
+</html> 

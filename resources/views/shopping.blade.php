@@ -1,10 +1,15 @@
+	
 <!DOCTYPE html>
 <html>
 <head>
     <title>show</title>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 </head>
+
 <body>
+
+@extends('home')
+@section('content')
 
 <form action="products" method="post">
 	{{ csrf_field() }}
@@ -39,6 +44,7 @@
 		
 	</table>
 </div>
+@endsection
 
 </body>
 </html>

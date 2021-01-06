@@ -79,9 +79,18 @@ class AuthController extends Controller
          
         $data = $request->all();
  
-        $check = $this->create($data);
+        //$check = $this->create($data);
+        $check = $this->create_user($data);
        
         return Redirect::to("dashboard")->withSuccess('Great! You have Successfully loggedin');
+    }
+    public function create_user(array $data)
+    {
+      return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password'])
+      ]);
     }
      
     public function dashboard()
@@ -90,7 +99,7 @@ class AuthController extends Controller
       if(Auth::check()){
         return view('dashboard');
       }
-       return Redirect::to("login")->withSuccess('Opps! You do not have access');
+       return Redirect::to("dashboard")->withSuccess('Opps! You do not have access');
     }
     public function admindashboard()
     {
@@ -101,14 +110,14 @@ class AuthController extends Controller
        return Redirect::to("login")->withSuccess('Opps! You do not have access');
     }
  
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }
+    // public function create(array $data)
+    // {
+    //   return User::create([
+    //     'name' => $data['name'],
+    //     'email' => $data['email'],
+    //     'password' => Hash::make($data['password'])
+    //   ]);
+    // }
      
     public function logout() {
         Session::flush();
